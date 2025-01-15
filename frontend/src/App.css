@@ -28,7 +28,14 @@ p{
     transform: rotate(360deg);
   }
 }
-
+textarea {
+  width: 100%;
+  height: 300px;
+  font-family: monospace;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
@@ -83,7 +90,9 @@ p{
 		transform: translateY(-25px);
 	}
 }
-
+.output{
+  background-color: black;
+}
 .menu{
   display: flex;
   gap: 10px;
@@ -97,4 +106,39 @@ button:hover{
 }
 span{
   font-family: "Press Start 2P", serif;
+}
+.play-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+ 
+}
+
+.problem-card {
+  background-color: #000000;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.code-editor {
+  margin-top: 20px;
+}
+
+textarea {
+  width: 100%;
+  font-family: monospace;
+  font-size: 14px;
+  padding: 10px;
+}
+
+
+.output {
+  margin-top: 20px;
+  background-color: #ffffff;
+  padding: 10px;
+  color: black;
+  border-radius: 5px;
 }

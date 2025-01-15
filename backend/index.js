@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const { exec } = require('child_process'); 
 const problemSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
@@ -32,6 +33,22 @@ app.get("/api/problems", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch problems", details: error });
   }
+});
+app.post('/execute', (req, res) => {
+  const { code } = req.body; // รับโค้ดจาก Frontend
+  const fileName = 'temp.js'; // ไฟล์ที่จะใช้สำหรับรันโค้ด
+
+  // เขียนโค้ดไปที่ไฟล์ชั่วคราว
+  const fs = require('fs');
+  fs.writeFileSync(fileName, code);
+
+  // รันโค้ดที่เขียนด้วย Node.js
+  exec(`node ${fileName}`, (error, stdout, stderr) => {
+    if (error) {
+      return res.json({ output: `Error: ${stderr || error.message}` });
+    }
+    res.json({ output: stdout });
+  });
 });
 
 app.post("/api/problems", async (req, res) => {
